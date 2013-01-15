@@ -31,12 +31,20 @@ public class ExecutorWorkerThreadTest {
 	public void test() {
         Stack<AbstractWorkerThread> handles = new Stack<AbstractWorkerThread>();
         
-		AbstractWorkerThread awt = new ManagementWorkerThread("precise", 4750, "Executor1");
+		AbstractWorkerThread awt = new ExecutorWorkerThread("precise", 4750, "Executor1");
 		awt.registerJobs();
 		awt.start();
-		
-		handles.push(awt);
-		handles.pop().stop();
+		try {
+          Thread.sleep(5000);
+          handles.push(awt);
+          handles.pop().stop();
+          
+          Thread.sleep(3000);
+            
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 		
 	
 	}

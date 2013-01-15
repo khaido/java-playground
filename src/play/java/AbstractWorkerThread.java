@@ -71,13 +71,23 @@ public class AbstractWorkerThread implements Runnable {
 	@Override
 	public void run() {
 
-		try {
-			logger.info("Running " + name + " (" + new Date().toString() + ")");
-
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-
+	    logger.info("Starting Worker "+ name +" ("+new Date().toString()+")");
+	    
+        while (!thread.interrupted()) {
+            
+            // Running the Gearman Worker
+            logger.info("Running Worker "+ name +" ("+new Date().toString()+")");
+            
+            try {
+                thread.sleep(1000);
+            } catch(InterruptedException ex) {
+                thread.currentThread().interrupt();
+            }           
+        
+        }
+        
+        logger.info("Thread Stopped" + " (" + new Date().toString() + ")");
+	    
 		// Thread exits
 	}
 
