@@ -73,15 +73,15 @@ public class AbstractWorkerThread implements Runnable {
 
 	    logger.info("Starting Worker "+ name +" ("+new Date().toString()+")");
 	    
-        while (!thread.interrupted()) {
+        while (!Thread.interrupted()) {
             
             // Running the Gearman Worker
             logger.info("Running Worker "+ name +" ("+new Date().toString()+")");
             
             try {
-                thread.sleep(1000);
+                Thread.sleep(1000);
             } catch(InterruptedException ex) {
-                thread.currentThread().interrupt();
+                Thread.currentThread().interrupt();
             }           
         
         }
